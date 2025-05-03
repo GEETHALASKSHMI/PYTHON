@@ -1,0 +1,43 @@
+# Daily Step Goal Tracker
+
+# Set your daily step goal
+daily_goal = 8000
+
+# Dictionary to store steps for each day
+step_data = {}
+
+# List of days
+days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+# Collect step data from the user
+for day in days:
+    try:
+        steps = int(input(f"Enter the number of steps for {day}: "))
+        step_data[day] = steps
+    except ValueError:
+        print("❌ Please enter a valid number.")
+        steps = int(input(f"Enter the number of steps for {day}: "))
+        step_data[day] = steps
+
+# Calculate total and average steps
+total_steps = sum(step_data.values())
+average_steps = total_steps / len(days)
+
+# Display summary
+print("\n📊 Weekly Step Report 📊")
+print("---------------------------")
+for day, steps in step_data.items():
+    status = "✅ Goal Met" if steps >= daily_goal else "❌ Goal Missed"
+    print(f"{day}: {steps} steps - {status}")
+
+print("---------------------------")
+print(f"Total Steps this Week: {total_steps}")
+print(f"Average Daily Steps: {average_steps:.2f}")
+
+# Overall achievement summary
+days_met_goal = sum(1 for s in step_data.values() if s >= daily_goal)
+print(f"You met your daily step goal on {days_met_goal} out of 7 days.")
+
+
+
+
